@@ -12,7 +12,12 @@ import { z } from "zod";
 
 import heroImg from "@/assets/culto-fundo.jpeg";
 import aboutImg from "@/assets/about-bible.jpg";
-import logoImg from "@/assets/logo.png"
+import logoImg from "@/assets/logo.png";
+import vidasOram from "@/assets/vidas-oram.jpeg";
+import vigilia from "@/assets/vigilia-unidade.jpeg";
+import encontroCasais from "@/assets/encontro-casais.jpeg";
+import pastorMurilo from "@/assets/pastor-murilo.jpeg";
+import pastoraAna from "@/assets/pastora-ana.jpeg"
 
 const LOGO = logoImg;
 
@@ -47,10 +52,10 @@ const NAV = [
 ];
 
 const CULTOS = [
-  { day: "Terça-feira", time: "19:30", title: "Culto de Ensino", icon: "📖" },
-  { day: "Quinta-feira", time: "19:30", title: "Culto de Oração", icon: "🙏" },
-  { day: "Sábado", time: "08:00", title: "Encontro da Igreja", icon: "☀️" },
-  { day: "Domingo", time: "17:30", title: "Culto de Celebração", icon: "🎵" },
+  { day: "Terça-feira", time: "19:30", title: "Culto de Ensino"},
+  { day: "Quinta-feira", time: "19:30", title: "Culto de Oração"},
+  { day: "Sábado", time: "08:00", title: "Encontro da Igreja"},
+  { day: "Domingo", time: "17:30", title: "Culto de Celebração"},
 ];
 
 const MISSAO = [
@@ -60,15 +65,15 @@ const MISSAO = [
 ];
 
 const PASTORES = [
-  { nome: "Pr. Murilo Santos", cargo: "Pastor Fundador", foto: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&q=80&auto=format&fit=crop" },
-  { nome: "Pastor Auxiliar", cargo: "Pastor Auxiliar", foto: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=600&q=80&auto=format&fit=crop" },
-  { nome: "Pastora de Louvor", cargo: "Ministério de Louvor", foto: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=600&q=80&auto=format&fit=crop" },
+  { nome: "Pr. Murilo Santos", cargo: "Pastor Fundador", foto: pastorMurilo, desc: "Dedicado ao serviço do Reino, ao ensino da Palavra e ao cuidado da família Mievre."},
+  { nome: "Pra. Ana Paula", cargo: "Pastora", foto: pastoraAna, desc: "Dedicada ao serviço do Reino, ao ensino da Palavra e ao cuidado da família Mievre."},
+  
 ];
 
 const EVENTOS = [
-  { nome: "Conferência do Reino", data: "15 a 17 de Agosto", desc: "Três noites de adoração, ensino da Palavra e comunhão.", img: "https://images.unsplash.com/photo-1519452575417-564c1401ecc0?w=1200&q=80&auto=format&fit=crop" },
-  { nome: "Encontro de Famílias", data: "12 de Setembro", desc: "Um dia especial de comunhão para toda a família Mievre.", img: "https://images.unsplash.com/photo-1529333166437-7750a6dd5a70?w=1200&q=80&auto=format&fit=crop" },
-  { nome: "Vigília de Oração", data: "Última sexta do mês", desc: "Noite dedicada à oração e busca da presença de Deus.", img: "https://images.unsplash.com/photo-1544027993-37dbfe43562a?w=1200&q=80&auto=format&fit=crop" },
+  { nome: "Vidas que Oram",img:vidasOram  },
+  { nome: "Vigília de Oração", img:vigilia },
+  { nome: "Encontro de Casais", img:encontroCasais }
 ];
 
 const MENSAGENS = [
@@ -86,6 +91,7 @@ const FE = [
   { titulo: "Da Salvação", texto: "Cremos que a salvação é dom gratuito de Deus, recebida pela fé em Jesus Cristo, mediante o arrependimento dos pecados e a regeneração pelo Espírito Santo (Efésios 2:8-9; Romanos 10:9-10)." },
   { titulo: "Da Igreja", texto: "Cremos que a Igreja é o corpo de Cristo, composta por todos os regenerados, chamada a adorar a Deus, edificar-se na Palavra, evangelizar e servir ao próximo (Efésios 1:22-23; Mateus 28:19-20)." },
   { titulo: "Do Batismo e da Ceia do Senhor", texto: "Cremos no batismo por imersão em nome do Pai, do Filho e do Espírito Santo como testemunho público da fé, e na Ceia do Senhor como memorial da obra de Cristo (Mateus 28:19; 1 Coríntios 11:23-26)." },
+  { titulo: "De Satanás", texto: "Cremos, de acordo com o ensino das Escrituras, que existe um ser pessoal, chamado Satanás, “o deus deste século”, “o príncipe do poder do ar”, cheio de toda sutileza e malícia, o qual procura, incessantemente, frustrar os propósitos de Deus e seduzir (fazer cair em tentação e no pecado) os filhos dos homens. (Ef 2.2; Ap 12.9; 2Co 4.4; 11.13-15)."}
 ];
 
 const REDES = [
@@ -537,7 +543,7 @@ function Pastores() {
                   <p className="text-xs uppercase tracking-[0.24em] text-gold">{PASTORES[c.i].cargo}</p>
                   <h3 className="mt-3 font-display text-3xl font-semibold text-primary sm:text-4xl">{PASTORES[c.i].nome}</h3>
                   <p className="mt-4 text-muted-foreground leading-relaxed">
-                    Dedicado ao serviço do Reino, ao ensino da Palavra e ao cuidado da família Mievre.
+                    {PASTORES[c.i].desc}
                   </p>
                 </div>
               </motion.div>
@@ -588,7 +594,7 @@ function Horarios() {
             >
               <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-primary via-gold to-primary opacity-0 transition-opacity group-hover:opacity-100" />
               <div className="flex items-center gap-2 text-xs font-medium uppercase tracking-widest text-gold">
-                <span aria-hidden className="text-lg">{c.icon}</span> {c.day}
+                <span aria-hidden className="text-lg"></span> {c.day}
               </div>
               <div className="mt-6 flex items-baseline gap-2">
                 <span className="font-display text-5xl font-semibold text-primary">{c.time.split(":")[0]}</span>
@@ -666,11 +672,11 @@ function Eventos() {
                 className="relative aspect-[16/9] w-full"
               >
                 <img src={EVENTOS[c.i].img} alt={EVENTOS[c.i].nome} className="absolute inset-0 h-full w-full object-cover" loading="lazy" />
-                <div className="absolute inset-0 bg-gradient-to-t from-primary/95 via-primary/50 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-primary/20 via-primary/50 to-transparent" />
                 <div className="absolute inset-x-0 bottom-0 p-6 text-white sm:p-10">
-                  <p className="text-xs uppercase tracking-[0.24em] text-gold-soft">{EVENTOS[c.i].data}</p>
+                  {/* <p className="text-xs uppercase tracking-[0.24em] text-gold-soft">{EVENTOS[c.i].data}</p> */} 
                   <h3 className="mt-2 font-display text-2xl font-semibold sm:text-4xl">{EVENTOS[c.i].nome}</h3>
-                  <p className="mt-2 max-w-2xl text-sm text-white/85 sm:text-base">{EVENTOS[c.i].desc}</p>
+                 {/* <p className="mt-2 max-w-2xl text-sm text-white/85 sm:text-base">{EVENTOS[c.i].desc}</p> */}
                 </div>
               </motion.div>
             </AnimatePresence>
@@ -731,13 +737,13 @@ function Midia() {
 
         <div className="mt-20">
           <div className="mx-auto max-w-3xl text-center">
-            <h3 className="font-display text-2xl font-semibold text-primary sm:text-3xl">🎵 Nossa Playlist</h3>
+            <h3 className="font-display text-2xl font-semibold text-primary sm:text-3xl">Nossa Playlist</h3>
             <p className="mt-3 text-muted-foreground">Ouça as canções que embalam nossos cultos e devocionais.</p>
           </div>
           <div className="mx-auto mt-8 max-w-3xl overflow-hidden rounded-2xl border border-border shadow-elegant">
             <iframe
               title="Playlist Mievre no Spotify"
-              src="https://open.spotify.com/embed/playlist/37i9dQZF1DWYBO1MoTDhZI?utm_source=generator&theme=0"
+              src="https://open.spotify.com/embed/playlist/5FUGMqip9t0zSruk7Vzb7G?si=a67f30czTnGiVjLu-ocvTw"
               width="100%"
               height="380"
               loading="lazy"
@@ -1186,4 +1192,4 @@ function BackToTop() {
 }
 
 // Unused imports kept intentionally minimal — remove the Flame if unused
-void Flame;
+void 0
