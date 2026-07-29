@@ -3,9 +3,9 @@ import { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence, useScroll, useTransform, type Variants } from "framer-motion";
 import {
   Menu, X, MapPin, Phone, Mail, User, MessageCircle, BookOpen, Users,
-  HeartHandshake, Calendar, Clock, ArrowUp, Instagram, Facebook, Youtube,
+  HeartHandshake, Calendar, Clock, ArrowUp, Instagram, 
   ArrowRight, Navigation, ChevronLeft, ChevronRight, ChevronDown, Copy,
-  Music, Heart, Flame,
+  Music, Heart, Flame, Sparkles,
 } from "lucide-react";
 import { toast, Toaster } from "sonner";
 import { z } from "zod";
@@ -52,10 +52,10 @@ const NAV = [
 ];
 
 const CULTOS = [
-  { day: "Terça-feira", time: "19:30", title: "Culto de Ensino"},
-  { day: "Quinta-feira", time: "19:30", title: "Culto de Oração"},
-  { day: "Sábado", time: "08:00", title: "Encontro da Igreja"},
-  { day: "Domingo", time: "17:30", title: "Culto de Celebração"},
+  { day: "Terça-feira", time: "19:30", title: "Ensino Bíblico"},
+  { day: "Quinta-feira", time: "19:30", title: "Culto de Libertação e Vitória"},
+  { day: "Sábado", time: "08:00", title: "Manhã de Oração"},
+  { day: "Domingo", time: "17:30", title: "Culto Evangelistico, Culto de Santa Ceia, Culta de Missões e Culto da Família"},
 ];
 
 const MISSAO = [
@@ -76,11 +76,6 @@ const EVENTOS = [
   { nome: "Encontro de Casais", img:encontroCasais }
 ];
 
-const MENSAGENS = [
-  { titulo: "Buscai primeiro o Reino", texto: "Colocar Deus em primeiro lugar é o segredo para viver com propósito.", data: "Hoje", img: "https://images.unsplash.com/photo-1585699324551-f6c309eedeca?w=800&q=80&auto=format&fit=crop" },
-  { titulo: "A graça que sustenta", texto: "Nenhum vale é tão profundo que a graça de Deus não alcance.", data: "Ontem", img: "https://images.unsplash.com/photo-1499209974431-9dddcece7f88?w=800&q=80&auto=format&fit=crop" },
-  { titulo: "Firmes na fé", texto: "A fé não remove todas as tempestades, mas nos ancora em Cristo.", data: "Esta semana", img: "https://images.unsplash.com/photo-1478147427282-58a87a120781?w=800&q=80&auto=format&fit=crop" },
-];
 
 const FE = [
   { titulo: "Das Escrituras Sagradas", texto: "Cremos que a Bíblia Sagrada é a Palavra inspirada de Deus, sem erro em seus manuscritos originais, e a única regra infalível de fé e prática para o cristão (2 Timóteo 3:16-17; 2 Pedro 1:20-21)." },
@@ -95,11 +90,9 @@ const FE = [
 ];
 
 const REDES = [
-  { icon: Instagram, label: "Instagram", href: "#" },
-  { icon: Facebook, label: "Facebook", href: "#" },
-  { icon: Youtube, label: "YouTube", href: "#" },
-  { icon: Music, label: "Spotify", href: "#" },
-  { icon: MessageCircle, label: "WhatsApp", href: "https://wa.me/" },
+  { icon: Instagram, label: "Instagram", href:  import.meta.env.VITE_INSTAGRAM_URL},
+  { icon: Music, label: "Spotify", href: import.meta.env.VITE_SPOTIFY_PLAYLIST_URL},
+  { icon: MessageCircle, label: "WhatsApp", href: import.meta.env.VITE_WHATSAPP_CHANNEL_URL},
 ];
 
 const PIX_KEY = "contato@mievre.com.br";
@@ -212,13 +205,21 @@ function Navbar() {
         className="mx-auto flex max-w-7xl items-center justify-between px-6 py-3"
       >
         <a href="#top" className="flex items-center gap-3 shrink-0">
-          <img
-            src={LOGO}
-            alt="Logo Mievre"
-            className={`transition-all ${scrolled ? "h-10 w-10" : "h-12 w-12"} object-contain`}
-          />
+          {/* Container Circular Branco */}
+          <div
+            className={`flex items-center justify-center rounded-full bg-white transition-all shadow-sm ${
+              scrolled ? "h-11 w-11 p-1.5" : "h-14 w-14 p-2"
+            }`}
+          >
+            <img
+              src={LOGO}
+              alt="Logo Mievre"
+              className="h-full w-full object-contain"
+            />
+          </div>
+
           <span className="hidden sm:flex flex-col leading-tight text-white">
-            <span className="font-display text-base font-semibold tracking-tight">Mievre</span>
+            <span className="font-display text-base font-semibold tracking-tight">Ministério do</span>
             <span className="text-[10px] uppercase tracking-[0.2em] text-gold-soft">Evangelho do Reino</span>
           </span>
         </a>
@@ -334,7 +335,7 @@ function Hero() {
           transition={{ delay: 0.2, duration: 0.8 }}
           className="font-display text-4xl font-semibold leading-[1.05] sm:text-6xl lg:text-7xl"
         >
-          Mievre <span className="text-gold">Ministério</span>
+          <span className="text-gold">Ministério</span>
           <br /> do Evangelho do Reino
         </motion.h1>
 
@@ -706,52 +707,74 @@ function Eventos() {
 }
 
 /* ---------------- MIDIA ---------------- */
-function Midia() {
+const PODCAST_SPOTIFY_URL =
+  import.meta.env.VITE_SPOTIFY_PODCAST_URL
+const PLAYLIST_SPOTIFY_URL =
+  import.meta.env.VITE_SPOTIFY_PLAYLIST_URL 
+
+export function Midia() {
   return (
     <Section id="midia" className="bg-gradient-to-b from-background to-secondary/40">
       <div className="mx-auto max-w-7xl px-6">
+        
+        {/* 🎙️ 1. SEÇÃO DO PODCAST / MENSAGENS DIÁRIAS */}
         <SectionHeader
           eyebrow="Mídia"
           title={<>Mensagens <span className="text-gold">Diárias</span></>}
-          subtitle="Palavras para edificar sua fé todos os dias."
+          subtitle="Palavras e reflexões para edificar sua fé todos os dias."
         />
-        <div className="mt-14 grid gap-6 md:grid-cols-3">
-          {MENSAGENS.map((m, i) => (
-            <motion.article
-              key={m.titulo}
-              initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-60px" }}
-              transition={{ duration: 0.5, delay: i * 0.1 }}
-              className="group overflow-hidden rounded-2xl border border-border bg-card shadow-soft transition-all hover:-translate-y-1 hover:shadow-elegant"
-            >
-              <div className="aspect-[16/10] overflow-hidden">
-                <img src={m.img} alt={m.titulo} loading="lazy" className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" />
-              </div>
-              <div className="p-6">
-                <p className="text-xs uppercase tracking-widest text-gold">{m.data}</p>
-                <h3 className="mt-2 font-display text-xl font-semibold text-primary">{m.titulo}</h3>
-                <p className="mt-2 text-sm text-muted-foreground leading-relaxed">{m.texto}</p>
-              </div>
-            </motion.article>
-          ))}
-        </div>
 
+        {/* Player do Podcast Centralizado */}
+        <motion.div
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.5 }}
+        className="mx-auto mt-10 max-w-3xl overflow-hidden rounded-2xl border border-border shadow-elegant"
+        >
+        <iframe
+          title="Podcast MIEVRE - Mensagem Diária no Spotify"
+          src="https://open.spotify.com/embed/show/033MxhNxBTh0dC3EJbkXvB?utm_source=generator"
+          width="100%"
+          height="352"
+          frameBorder="0"
+          loading="lazy"
+          allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+          className="w-full border-0 rounded-2xl"
+          />
+        </motion.div>
+
+        {/* 🎵 2. SEÇÃO DA PLAYLIST DE LOUVORES */}
         <div className="mt-20">
           <div className="mx-auto max-w-3xl text-center">
-            <h3 className="font-display text-2xl font-semibold text-primary sm:text-3xl">Nossa Playlist</h3>
-            <p className="mt-3 text-muted-foreground">Ouça as canções que embalam nossos cultos e devocionais.</p>
+            <h3 className="font-display text-2xl font-semibold text-primary sm:text-3xl">
+              Nossa Playlist
+            </h3>
+            <p className="mt-3 text-muted-foreground">
+              Ouça as canções que embalam nossos cultos e devocionais.
+            </p>
           </div>
-          <div className="mx-auto mt-8 max-w-3xl overflow-hidden rounded-2xl border border-border shadow-elegant">
+
+          {/* Player da Playlist Centralizado */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            className="mx-auto mt-8 max-w-3xl overflow-hidden rounded-2xl border border-border shadow-elegant"
+          >
             <iframe
               title="Playlist Mievre no Spotify"
-              src="https://open.spotify.com/embed/playlist/5FUGMqip9t0zSruk7Vzb7G?si=a67f30czTnGiVjLu-ocvTw"
+              src={PLAYLIST_SPOTIFY_URL}
               width="100%"
               height="380"
               loading="lazy"
               allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
               className="w-full border-0"
             />
-          </div>
+          </motion.div>
         </div>
+
       </div>
     </Section>
   );
@@ -978,64 +1001,47 @@ function Localizacao() {
 }
 
 /* ---------------- CONTATO ---------------- */
-const contactSchema = z.object({
-  nome: z.string().trim().min(2, "Informe seu nome").max(100),
-  email: z.string().trim().email("E-mail inválido").max(255),
-  telefone: z.string().trim().min(8, "Telefone inválido").max(20),
-  mensagem: z.string().trim().min(5, "Escreva uma mensagem").max(1000, "Máximo 1000 caracteres"),
-});
+const CANAL_WHATSAPP_URL = import.meta.env.VITE_WHATSAPP_CHANNEL_URL;
+console.log("Link do canal:", CANAL_WHATSAPP_URL);
 
-function Contato() {
-  const [sending, setSending] = useState(false);
-  const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const fd = new FormData(e.currentTarget);
-    const data = {
-      nome: String(fd.get("nome") ?? ""),
-      email: String(fd.get("email") ?? ""),
-      telefone: String(fd.get("telefone") ?? ""),
-      mensagem: String(fd.get("mensagem") ?? ""),
-    };
-    const parsed = contactSchema.safeParse(data);
-    if (!parsed.success) {
-      toast.error(parsed.error.issues[0]?.message ?? "Verifique os campos");
-      return;
-    }
-    setSending(true);
-    await new Promise((r) => setTimeout(r, 700));
-    setSending(false);
-    (e.target as HTMLFormElement).reset();
-    toast.success("Mensagem enviada! Entraremos em contato em breve.");
-  };
-
+export function Contato() {
   return (
     <Section id="contato" className="bg-background">
-      <div className="mx-auto max-w-7xl px-6">
-        <div className="grid gap-14 lg:grid-cols-2 lg:gap-20">
+      <div className="mx-auto max-w-7xl px-6 py-12">
+        <div className="grid gap-14 lg:grid-cols-2 lg:gap-20 lg:items-center">
+          
+          {/* Lado Esquerdo: Informações de Horários e Endereço */}
           <div>
             <SectionHeader
               center={false}
-              eyebrow="Fale conosco"
-              title={<>Vamos <span className="text-gold">conversar</span></>}
-              subtitle="Envie sua mensagem. Nossa equipe terá alegria em te responder."
+              eyebrow="Palavra Diária"
+              title={<>Receba uma palavra de <span className="text-gold">fé diariamente</span></>}
+              subtitle="Não perca nossas reflexões bíblicas. Junte-se ao nosso canal oficial no WhatsApp e receba a palavra todas as manhãs."
             />
+            
             <ul className="mt-10 space-y-5">
               <li className="flex items-start gap-4">
-                <div className="mt-1 grid h-11 w-11 shrink-0 place-items-center rounded-lg bg-primary/10 text-primary"><MapPin className="h-5 w-5" /></div>
+                <div className="mt-1 grid h-11 w-11 shrink-0 place-items-center rounded-lg bg-primary/10 text-primary">
+                  <MapPin className="h-5 w-5" />
+                </div>
                 <div>
                   <p className="text-sm font-semibold text-foreground">Endereço</p>
                   <p className="text-sm text-muted-foreground">Rua Rio Grande do Sul, Novo Paraíso — Aracaju/SE</p>
                 </div>
               </li>
               <li className="flex items-start gap-4">
-                <div className="mt-1 grid h-11 w-11 shrink-0 place-items-center rounded-lg bg-primary/10 text-primary"><Clock className="h-5 w-5" /></div>
+                <div className="mt-1 grid h-11 w-11 shrink-0 place-items-center rounded-lg bg-primary/10 text-primary">
+                  <Clock className="h-5 w-5" />
+                </div>
                 <div>
                   <p className="text-sm font-semibold text-foreground">Cultos</p>
                   <p className="text-sm text-muted-foreground">Ter e Qui 19:30 · Sáb 08:00 · Dom 17:30</p>
                 </div>
               </li>
               <li className="flex items-start gap-4">
-                <div className="mt-1 grid h-11 w-11 shrink-0 place-items-center rounded-lg bg-primary/10 text-primary"><MessageCircle className="h-5 w-5" /></div>
+                <div className="mt-1 grid h-11 w-11 shrink-0 place-items-center rounded-lg bg-primary/10 text-primary">
+                  <MessageCircle className="h-5 w-5" />
+                </div>
                 <div>
                   <p className="text-sm font-semibold text-foreground">Redes</p>
                   <p className="text-sm text-muted-foreground">WhatsApp, Instagram, Facebook, YouTube e Spotify</p>
@@ -1044,56 +1050,57 @@ function Contato() {
             </ul>
           </div>
 
-          <motion.form
-            variants={fadeUp} initial="hidden" whileInView="show" viewport={{ once: true }}
-            onSubmit={onSubmit}
-            className="rounded-2xl border border-border bg-card p-6 shadow-elegant sm:p-10"
-            noValidate
+          {/* Lado Direito: Convite para o Canal do WhatsApp */}
+          <motion.div
+            variants={fadeUp}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true }}
+            className="rounded-2xl border border-border bg-card p-8 shadow-elegant text-center sm:p-10"
           >
-            <div className="grid gap-5">
-              <Field icon={User} label="Nome" name="nome" type="text" placeholder="Seu nome completo" autoComplete="name" />
-              <Field icon={Mail} label="E-mail" name="email" type="email" placeholder="voce@email.com" autoComplete="email" />
-              <Field icon={Phone} label="Telefone" name="telefone" type="tel" placeholder="(00) 00000-0000" autoComplete="tel" />
-              <div>
-                <label htmlFor="mensagem" className="mb-2 block text-sm font-medium text-foreground">Mensagem</label>
-                <textarea
-                  id="mensagem" name="mensagem" rows={5} required maxLength={1000}
-                  placeholder="Escreva sua mensagem..."
-                  className="w-full resize-none rounded-lg border border-input bg-background px-4 py-3 text-sm outline-none transition placeholder:text-muted-foreground focus:border-primary focus:ring-2 focus:ring-primary/20"
-                />
-              </div>
-              <button
-                type="submit" disabled={sending}
-                className="mt-2 inline-flex items-center justify-center gap-2 rounded-full bg-[#FE261E] px-7 py-3.5 text-sm font-semibold text-white shadow-soft transition hover:brightness-110 disabled:opacity-60"
-              >
-                {sending ? "Enviando..." : "Enviar Mensagem"}
-                {!sending && <ArrowRight className="h-4 w-4" />}
-              </button>
+            <div className="mx-auto mb-5 flex h-16 w-16 items-center justify-center rounded-full bg-[#25D366]/10 text-[#25D366]">
+              <MessageCircle className="h-8 w-8" />
             </div>
-          </motion.form>
+
+            <h3 className="text-2xl font-bold text-foreground">
+              Canal do Devocional
+            </h3>
+            
+            <p className="mt-3 text-sm text-muted-foreground leading-relaxed">
+              Receba diariamente uma reflexão bíblica, versículos inspiradores e orações diretamente no seu aplicativo.
+            </p>
+
+            {/* Destaques */}
+            <div className="mt-6 space-y-3 text-left border-t border-b border-border py-4 text-xs text-muted-foreground">
+              <div className="flex items-center gap-2">
+                <Sparkles className="h-4 w-4 text-gold shrink-0" />
+                <span>Mensagens matinais</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <BookOpen className="h-4 w-4 text-primary shrink-0" />
+                <span>Leitura rápida para edificar o seu dia</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <HeartHandshake className="h-4 w-4 text-green-500 shrink-0" />
+                <span>100% gratuito e privativo (ninguém vê seu número)</span>
+              </div>
+            </div>
+
+            {/* Botão de Ação */}
+            <a
+              href={CANAL_WHATSAPP_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-8 inline-flex w-full items-center justify-center gap-2 rounded-full bg-[#25D366] px-7 py-4 text-sm font-semibold text-white shadow-soft transition hover:bg-[#20bd5a]"
+            >
+              Entrar no Canal Oficial
+              <ArrowRight className="h-4 w-4" />
+            </a>
+          </motion.div>
+
         </div>
       </div>
     </Section>
-  );
-}
-
-function Field({
-  icon: Icon, label, name, type, placeholder, autoComplete,
-}: {
-  icon: React.ComponentType<{ className?: string }>;
-  label: string; name: string; type: string; placeholder: string; autoComplete?: string;
-}) {
-  return (
-    <div>
-      <label htmlFor={name} className="mb-2 block text-sm font-medium text-foreground">{label}</label>
-      <div className="relative">
-        <Icon className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
-        <input
-          id={name} name={name} type={type} required placeholder={placeholder} autoComplete={autoComplete}
-          className="w-full rounded-lg border border-input bg-background py-3 pl-10 pr-4 text-sm outline-none transition placeholder:text-muted-foreground focus:border-primary focus:ring-2 focus:ring-primary/20"
-        />
-      </div>
-    </div>
   );
 }
 
@@ -1105,10 +1112,20 @@ function Footer() {
       <div className="mx-auto grid max-w-7xl gap-10 px-6 py-16 sm:grid-cols-2 lg:grid-cols-4">
         <div className="lg:col-span-2">
           <div className="flex items-center gap-3">
-            <img src={LOGO} alt="Logo Mievre" className="h-14 w-14 object-contain" />
+            {/* Container Circular Branco */}
+            <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-white p-2 shadow-sm">
+              <img
+                src={LOGO}
+                alt="Logo Mievre"
+                className="h-full w-full object-contain"
+              />
+            </div>
+
             <div className="flex flex-col leading-tight">
               <span className="font-display text-xl font-semibold">Mievre</span>
-              <span className="text-[11px] uppercase tracking-[0.2em] text-gold-soft">Ministério do Evangelho do Reino</span>
+              <span className="text-[11px] uppercase tracking-[0.2em] text-gold-soft">
+                Ministério do Evangelho do Reino
+              </span>
             </div>
           </div>
           <p className="mt-6 max-w-md text-sm leading-relaxed text-white/70">
@@ -1119,7 +1136,9 @@ function Footer() {
               const I = s.icon;
               return (
                 <a
-                  key={s.label} href={s.href} aria-label={s.label}
+                  key={s.label}
+                  href={s.href}
+                  aria-label={s.label}
                   className="grid h-10 w-10 place-items-center rounded-full border border-white/20 bg-white/5 text-white transition hover:border-gold hover:bg-gold hover:text-primary"
                 >
                   <I className="h-4 w-4" />
@@ -1159,11 +1178,15 @@ function Footer() {
 }
 
 /* ---------------- FLOATING ---------------- */
-function WhatsAppFloat() {
+export function WhatsAppFloat() {
+  
+  const whatsappUrl = import.meta.env.VITE_WHATSAPP_CHANNEL_URL;
   return (
     <a
-      href="https://wa.me/" target="_blank" rel="noopener noreferrer"
-      aria-label="Fale conosco no WhatsApp"
+      href={whatsappUrl}
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="Junte-se à nossa comunidade no WhatsApp"
       className="fixed bottom-6 right-6 z-40 grid h-14 w-14 place-items-center rounded-full bg-[#25D366] text-white shadow-elegant transition hover:scale-110"
     >
       <MessageCircle className="h-6 w-6" />

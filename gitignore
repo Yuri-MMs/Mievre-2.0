@@ -30,3 +30,12 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Arquivo .gitignore
+node_modules
+.vite-temp
+dist
+
+# Ignorar dados sensíveis
+.env
+.env.local
