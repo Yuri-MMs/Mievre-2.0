@@ -238,10 +238,10 @@ function Navbar() {
         </ul>
 
         <a
-          href="#visita"
+          href={CANAL_WHATSAPP_URL}
           className="hidden xl:inline-flex items-center gap-2 rounded-full bg-[#FE261E] px-5 py-2.5 text-sm font-semibold text-white shadow-soft transition hover:brightness-110"
         >
-          Planejar minha visita <ArrowRight className="h-4 w-4" />
+          Faça parte <ArrowRight className="h-4 w-4" />
         </a>
 
         <button
@@ -355,7 +355,7 @@ function Hero() {
           className="mt-10 flex flex-col items-center gap-3 sm:flex-row"
         >
           <a
-            href="#visita"
+            href="#localizacao"
             className="inline-flex items-center gap-2 rounded-full bg-[#FE261E] px-7 py-3.5 text-sm font-semibold text-white shadow-elegant transition hover:brightness-110"
           >
             Quero Visitar <ArrowRight className="h-4 w-4" />
@@ -931,12 +931,6 @@ function PrimeiraVisita() {
               Será uma alegria receber você e sua família. Em nossos cultos você encontrará um ambiente acolhedor, louvor, ensino bíblico e comunhão.
             </p>
             <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
-              <a
-                href="#contato"
-                className="inline-flex items-center gap-2 rounded-full bg-[#FE261E] px-7 py-3.5 text-sm font-semibold text-white shadow-elegant transition hover:brightness-110"
-              >
-                Planejar minha visita <ArrowRight className="h-4 w-4" />
-              </a>
               <a
                 href="#horarios"
                 className="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-background px-7 py-3.5 text-sm font-semibold text-primary transition hover:bg-secondary"
