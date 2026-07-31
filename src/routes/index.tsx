@@ -52,10 +52,10 @@ const NAV = [
 ];
 
 const CULTOS = [
-  { day: "Terça-feira", time: "19h:30", title: "Ensino Bíblico"},
-  { day: "Quinta-feira", time: "19h:30", title: "Culto de Libertação e Vitória"},
-  { day: "Sábado", time: "08h:00", title: "Manhã de Oração, no Segundo Sábado do Mês começa às 06h:30"},
-  { day: "Domingo", time: "17h:30", title: "Culto da Família, Culto de Santa Ceia, Culta de Evangelismo, Culto Edificação da Fé e Culto de Louvor e Adoração"},
+  { day: "Terça-feira", time: "19h30", title: "Ensino Bíblico"},
+  { day: "Quinta-feira", time: "19h30", title: "Culto de Libertação e Vitória"},
+  { day: "Sábado", time: "08h00", title: "Manhã de Oração, no Segundo Sábado do Mês começa às 06h:30"},
+  { day: "Domingo", time: "17h30", title: "Culto da Família, Culto de Santa Ceia, Culta de Evangelismo, Culto Edificação da Fé e Culto de Louvor e Adoração"},
 ];
 
 const MISSAO = [
@@ -824,7 +824,7 @@ function Contribua() {
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-xs uppercase tracking-[0.24em] text-gold">PIX</p>
-                <p className="mt-1 font-display text-2xl font-semibold">Doação por PIX</p>
+                <p className="mt-1 font-display text-2xl font-semibold">Oferta por PIX</p>
               </div>
               <div className="grid h-12 w-12 place-items-center rounded-xl bg-gold text-primary font-display text-xl font-bold">P</div>
             </div>
@@ -963,7 +963,7 @@ function Localizacao() {
               </div>
               <h3 className="mt-6 font-display text-2xl font-semibold text-primary">Nosso endereço</h3>
               <address className="mt-3 not-italic text-muted-foreground leading-relaxed">
-                Rua Rio Grande do Sul<br />
+                Rua Rio Grande do Sul, 1258<br />
                 Novo Paraíso, Aracaju - SE<br />
                 CEP 49082-000
               </address>
@@ -1154,10 +1154,10 @@ function Footer() {
         <div>
           <h3 className="font-display text-sm font-semibold uppercase tracking-widest text-gold">Horários</h3>
           <ul className="mt-4 space-y-2 text-sm text-white/75">
-            <li>Terça · 19h:30</li>
-            <li>Quinta · 19h:30</li>
-            <li>Sábado · 08h:00</li>
-            <li>Domingo · 17h:30</li>
+            <li>Terça · 19h30</li>
+            <li>Quinta · 19h30</li>
+            <li>Sábado · 08h00</li>
+            <li>Domingo · 17h30</li>
           </ul>
         </div>
       </div>
