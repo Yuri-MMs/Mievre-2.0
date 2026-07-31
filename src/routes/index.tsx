@@ -52,10 +52,10 @@ const NAV = [
 ];
 
 const CULTOS = [
-  { day: "Terça-feira", time: "19:30", title: "Ensino Bíblico"},
-  { day: "Quinta-feira", time: "19:30", title: "Culto de Libertação e Vitória"},
-  { day: "Sábado", time: "08:00", title: "Manhã de Oração"},
-  { day: "Domingo", time: "17:30", title: "Culto Evangelistico, Culto de Santa Ceia, Culta de Missões e Culto da Família"},
+  { day: "Terça-feira", time: "19h:30", title: "Ensino Bíblico"},
+  { day: "Quinta-feira", time: "19h:30", title: "Culto de Libertação e Vitória"},
+  { day: "Sábado", time: "08h:00", title: "Manhã de Oração, no Segundo Sábado do Mês começa às 06h:30"},
+  { day: "Domingo", time: "17h:30", title: "Culto da Família, Culto de Santa Ceia, Culta de Evangelismo, Culto Edificação da Fé e Culto de Louvor e Adoração"},
 ];
 
 const MISSAO = [
@@ -534,7 +534,7 @@ function Pastores() {
                 initial={{ opacity: 0, x: 40 }}
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0, x: -40 }}
-                transition={{ duration: 0.5 }}
+                transition={{ duration: 1.0 }}
                 className="grid gap-0 sm:grid-cols-2"
               >
                 <div className="aspect-square overflow-hidden bg-primary/10">
@@ -669,7 +669,7 @@ function Eventos() {
                 initial={{ opacity: 0, scale: 1.02 }}
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0 }}
-                transition={{ duration: 0.6 }}
+                transition={{ duration: 1.0 }}
                 className="relative aspect-[16/9] w-full"
               >
                 <img src={EVENTOS[c.i].img} alt={EVENTOS[c.i].nome} className="absolute inset-0 h-full w-full object-cover" loading="lazy" />
@@ -1020,7 +1020,7 @@ export function Contato() {
                 </div>
                 <div>
                   <p className="text-sm font-semibold text-foreground">Endereço</p>
-                  <p className="text-sm text-muted-foreground">Rua Rio Grande do Sul, Novo Paraíso — Aracaju/SE</p>
+                  <p className="text-sm text-muted-foreground">Rua Rio Grande do Sul,1258, Novo Paraíso — Aracaju/SE</p>
                 </div>
               </li>
               <li className="flex items-start gap-4">
@@ -1029,7 +1029,7 @@ export function Contato() {
                 </div>
                 <div>
                   <p className="text-sm font-semibold text-foreground">Cultos</p>
-                  <p className="text-sm text-muted-foreground">Ter e Qui 19:30 · Sáb 08:00 · Dom 17:30</p>
+                  <p className="text-sm text-muted-foreground">Ter e Qui 19h:30 · Sáb 08h:00 · Dom 17h:30</p>
                 </div>
               </li>
               <li className="flex items-start gap-4">
@@ -1038,7 +1038,7 @@ export function Contato() {
                 </div>
                 <div>
                   <p className="text-sm font-semibold text-foreground">Redes</p>
-                  <p className="text-sm text-muted-foreground">WhatsApp, Instagram, Facebook, YouTube e Spotify</p>
+                  <p className="text-sm text-muted-foreground">WhatsApp, Instagram, TikTok e Spotify</p>
                 </div>
               </li>
             </ul>
@@ -1145,7 +1145,7 @@ function Footer() {
         <div>
           <h3 className="font-display text-sm font-semibold uppercase tracking-widest text-gold">Endereço</h3>
           <address className="mt-4 not-italic text-sm leading-relaxed text-white/75">
-            Rua Rio Grande do Sul<br />
+            Rua Rio Grande do Sul, 1258<br />
             Novo Paraíso<br />
             Aracaju - SE
           </address>
@@ -1154,10 +1154,10 @@ function Footer() {
         <div>
           <h3 className="font-display text-sm font-semibold uppercase tracking-widest text-gold">Horários</h3>
           <ul className="mt-4 space-y-2 text-sm text-white/75">
-            <li>Terça · 19:30</li>
-            <li>Quinta · 19:30</li>
-            <li>Sábado · 08:00</li>
-            <li>Domingo · 17:30</li>
+            <li>Terça · 19h:30</li>
+            <li>Quinta · 19h:30</li>
+            <li>Sábado · 08h:00</li>
+            <li>Domingo · 17h:30</li>
           </ul>
         </div>
       </div>
