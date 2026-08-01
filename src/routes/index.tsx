@@ -54,7 +54,7 @@ const NAV = [
 const CULTOS = [
   { day: "Terça-feira", time: "19h30", title: "Ensino Bíblico"},
   { day: "Quinta-feira", time: "19h30", title: "Culto de Libertação e Vitória"},
-  { day: "Sábado", time: "08h00", title: "Manhã de Oração, no Segundo Sábado do Mês começa às 06h:30"},
+  { day: "Sábado", time: "08h00", title: "Manhã de Oração (no sefundo da sábado do mês começa às 06h30)"},
   { day: "Domingo", time: "17h30", title: "Culto da Família, Culto de Santa Ceia, Culta de Evangelismo, Culto Edificação da Fé e Culto de Louvor e Adoração"},
 ];
 
@@ -963,8 +963,8 @@ function Localizacao() {
               </div>
               <h3 className="mt-6 font-display text-2xl font-semibold text-primary">Nosso endereço</h3>
               <address className="mt-3 not-italic text-muted-foreground leading-relaxed">
-                Rua Rio Grande do Sul, 1258<br />
-                Novo Paraíso, Aracaju - SE<br />
+                Rua Rio Grande do Sul, nº 1258<br />
+                Bairro Novo Paraíso, Aracaju - SE<br />
                 CEP 49082-000
               </address>
               <a
@@ -1020,7 +1020,7 @@ export function Contato() {
                 </div>
                 <div>
                   <p className="text-sm font-semibold text-foreground">Endereço</p>
-                  <p className="text-sm text-muted-foreground">Rua Rio Grande do Sul,1258, Novo Paraíso — Aracaju/SE</p>
+                  <p className="text-sm text-muted-foreground">Rua Rio Grande do Sul, nº 1258, Bairro Novo Paraíso — Aracaju/SE</p>
                 </div>
               </li>
               <li className="flex items-start gap-4">
@@ -1029,7 +1029,7 @@ export function Contato() {
                 </div>
                 <div>
                   <p className="text-sm font-semibold text-foreground">Cultos</p>
-                  <p className="text-sm text-muted-foreground">Ter e Qui 19h:30 · Sáb 08h:00 · Dom 17h:30</p>
+                  <p className="text-sm text-muted-foreground">Ter e Qui 19h30 · Sáb 08h00 · Dom 17h30</p>
                 </div>
               </li>
               <li className="flex items-start gap-4">
@@ -1076,7 +1076,7 @@ export function Contato() {
               </div>
               <div className="flex items-center gap-2">
                 <HeartHandshake className="h-4 w-4 text-green-500 shrink-0" />
-                <span>100% gratuito e privativo (ninguém vê seu número)</span>
+                <span>100% gratuito e privativo</span>
               </div>
             </div>
 
@@ -1116,7 +1116,7 @@ function Footer() {
             </div>
 
             <div className="flex flex-col leading-tight">
-              <span className="font-display text-xl font-semibold">Mievre</span>
+              <span className="font-display text-xl font-semibold">MIEVRE</span>
               <span className="text-[11px] uppercase tracking-[0.2em] text-gold-soft">
                 Ministério do Evangelho do Reino
               </span>
@@ -1145,8 +1145,8 @@ function Footer() {
         <div>
           <h3 className="font-display text-sm font-semibold uppercase tracking-widest text-gold">Endereço</h3>
           <address className="mt-4 not-italic text-sm leading-relaxed text-white/75">
-            Rua Rio Grande do Sul, 1258<br />
-            Novo Paraíso<br />
+            Rua Rio Grande do Sul, nº 1258<br />
+            Bairro Novo Paraíso<br />
             Aracaju - SE
           </address>
         </div>
@@ -1154,8 +1154,8 @@ function Footer() {
         <div>
           <h3 className="font-display text-sm font-semibold uppercase tracking-widest text-gold">Horários</h3>
           <ul className="mt-4 space-y-2 text-sm text-white/75">
-            <li>Terça · 19h30</li>
-            <li>Quinta · 19h30</li>
+            <li>Terça-feira · 19h30</li>
+            <li>Quinta-feira · 19h30</li>
             <li>Sábado · 08h00</li>
             <li>Domingo · 17h30</li>
           </ul>
