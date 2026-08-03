@@ -54,7 +54,7 @@ const NAV = [
 const CULTOS = [
   { day: "Terça-feira", time: "19h30", title: "Ensino Bíblico"},
   { day: "Quinta-feira", time: "19h30", title: "Culto de Libertação e Vitória"},
-  { day: "Sábado", time: "08h00", title: "Manhã de Oração (no sefundo da sábado do mês começa às 06h30)"},
+  { day: "Sábado", time: "08h00", title: "Manhã de Oração (no segundo sábado do mês começa às 06h30)"},
   { day: "Domingo", time: "17h30", title: "Culto da Família, Culto de Santa Ceia, Culta de Evangelismo, Culto Edificação da Fé e Culto de Louvor e Adoração"},
 ];
 
@@ -71,9 +71,8 @@ const PASTORES = [
 ];
 
 const EVENTOS = [
-  { nome: "Vidas que Oram",img:vidasOram  },
-  { nome: "Vigília de Oração", img:vigilia },
-  { nome: "Encontro de Casais", img:encontroCasais }
+  { img:vigilia },
+  { img:encontroCasais }
 ];
 
 
@@ -93,6 +92,7 @@ const REDES = [
   { icon: Instagram, label: "Instagram", href:  import.meta.env.VITE_INSTAGRAM_URL},
   { icon: Music, label: "Spotify", href: import.meta.env.VITE_SPOTIFY_PLAYLIST_URL},
   { icon: MessageCircle, label: "WhatsApp", href: import.meta.env.VITE_WHATSAPP_CHANNEL_URL},
+  { icon: TikTokIcon, label:"Tiktok", href: import.meta.env.VITE_TIKTOK_URL}
 ];
 
 const PIX_KEY = "contato@mievre.com.br";
@@ -277,11 +277,11 @@ function Navbar() {
               ))}
               <li className="pt-2">
                 <a
-                  href="#visita"
+                  href={CANAL_WHATSAPP_URL}
                   onClick={() => setOpen(false)}
                   className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-[#FE261E] px-5 py-3 text-sm font-semibold text-white"
                 >
-                  Planejar minha visita <ArrowRight className="h-4 w-4" />
+                  Faça parte <ArrowRight className="h-4 w-4" />
                 </a>
               </li>
             </ul>
@@ -649,6 +649,8 @@ function Missao() {
 /* ---------------- EVENTOS ---------------- */
 function Eventos() {
   const c = useCarousel(EVENTOS.length);
+  const [imagemExpandida, setImagemExpandida] = useState<string | null>(null);
+
   return (
     <Section id="eventos" className="bg-background">
       <div className="mx-auto max-w-7xl px-6">
@@ -657,11 +659,13 @@ function Eventos() {
           title={<>Próximos <span className="text-gold">Eventos</span></>}
           subtitle="Participe dos próximos encontros e conferências do Mievre."
         />
+        
         <div
           className="relative mx-auto mt-14 max-w-5xl"
           onTouchStart={c.onTouchStart}
           onTouchEnd={c.onTouchEnd}
         >
+          {/* Card da Imagem */}
           <div className="overflow-hidden rounded-3xl border border-border shadow-elegant">
             <AnimatePresence mode="wait">
               <motion.div
@@ -669,39 +673,95 @@ function Eventos() {
                 initial={{ opacity: 0, scale: 1.02 }}
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0 }}
-                transition={{ duration: 1.0 }}
-                className="relative aspect-[16/9] w-full"
+                transition={{ duration: 0.5 }}
+                className="group relative aspect-[16/9] w-full cursor-zoom-in"
+                onClick={() => setImagemExpandida(EVENTOS[c.i].img)}
               >
-                <img src={EVENTOS[c.i].img} alt={EVENTOS[c.i].nome} className="absolute inset-0 h-full w-full object-cover" loading="lazy" />
-                <div className="absolute inset-0 bg-gradient-to-t from-primary/20 via-primary/50 to-transparent" />
-                <div className="absolute inset-x-0 bottom-0 p-6 text-white sm:p-10">
-                  {/* <p className="text-xs uppercase tracking-[0.24em] text-gold-soft">{EVENTOS[c.i].data}</p> */} 
-                  <h3 className="mt-2 font-display text-2xl font-semibold sm:text-4xl">{EVENTOS[c.i].nome}</h3>
-                 {/* <p className="mt-2 max-w-2xl text-sm text-white/85 sm:text-base">{EVENTOS[c.i].desc}</p> */}
+                <img
+                  src={EVENTOS[c.i].img}
+                  alt={`Evento ${c.i + 1}`}
+                  className="absolute inset-0 h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                  loading="lazy"
+                />
+
+                {/* Sutil dica visual ao passar o mouse sem cobrir a arte */}
+                <div className="absolute bottom-4 right-4 opacity-0 transition-opacity group-hover:opacity-100">
+                  <span className="flex items-center gap-2 rounded-full bg-black/60 px-3 py-1.5 text-xs font-medium text-white backdrop-blur-sm">
+                    <Sparkles className="h-3.5 w-3.5 text-gold" />
+                    Clique para ampliar
+                  </span>
                 </div>
               </motion.div>
             </AnimatePresence>
           </div>
 
-          <button aria-label="Anterior" onClick={c.prev} className="absolute left-2 top-1/2 -translate-y-1/2 grid h-11 w-11 place-items-center rounded-full bg-background/90 text-primary shadow-soft ring-1 ring-border transition hover:bg-primary hover:text-white sm:-left-6">
+          {/* Botões de Navegação */}
+          <button
+            aria-label="Anterior"
+            onClick={c.prev}
+            className="absolute left-2 top-1/2 -translate-y-1/2 grid h-11 w-11 place-items-center rounded-full bg-background/90 text-primary shadow-soft ring-1 ring-border transition hover:bg-primary hover:text-white sm:-left-6"
+          >
             <ChevronLeft className="h-5 w-5" />
           </button>
-          <button aria-label="Próximo" onClick={c.next} className="absolute right-2 top-1/2 -translate-y-1/2 grid h-11 w-11 place-items-center rounded-full bg-background/90 text-primary shadow-soft ring-1 ring-border transition hover:bg-primary hover:text-white sm:-right-6">
+          
+          <button
+            aria-label="Próximo"
+            onClick={c.next}
+            className="absolute right-2 top-1/2 -translate-y-1/2 grid h-11 w-11 place-items-center rounded-full bg-background/90 text-primary shadow-soft ring-1 ring-border transition hover:bg-primary hover:text-white sm:-right-6"
+          >
             <ChevronRight className="h-5 w-5" />
           </button>
 
+          {/* Indicadores (Dots) */}
           <div className="mt-6 flex justify-center gap-2">
             {EVENTOS.map((_, idx) => (
               <button
                 key={idx}
                 onClick={() => c.setI(idx)}
                 aria-label={`Ir para evento ${idx + 1}`}
-                className={`h-2 rounded-full transition-all ${idx === c.i ? "w-8 bg-gold" : "w-2 bg-primary/25 hover:bg-primary/50"}`}
+                className={`h-2 rounded-full transition-all ${
+                  idx === c.i ? "w-8 bg-gold" : "w-2 bg-primary/25 hover:bg-primary/50"
+                }`}
               />
             ))}
           </div>
         </div>
       </div>
+
+      {/* Lightbox / Modal de Expansão */}
+      <AnimatePresence>
+        {imagemExpandida && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setImagemExpandida(null)}
+            className="fixed inset-0 z-50 flex items-center justify-center bg-black/85 p-4 backdrop-blur-sm cursor-pointer"
+          >
+            {/* Botão de Fechar Visível (Canto Superior Direito) */}
+            <button
+              onClick={() => setImagemExpandida(null)}
+              aria-label="Fechar"
+              className="absolute right-4 top-4 z-10 flex items-center gap-2 rounded-full bg-black/60 p-3 text-white ring-1 ring-white/20 transition hover:bg-black/90 focus:outline-none sm:right-8 sm:top-8"
+            >
+              <X className="h-6 w-6" />
+              <span className="hidden text-sm font-medium sm:inline">Fechar</span>
+            </button>
+
+            {/* Imagem Ampliada */}
+            <motion.img
+              initial={{ scale: 0.95, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.95, opacity: 0 }}
+              transition={{ duration: 0.2 }}
+              src={imagemExpandida}
+              alt="Evento Expandido"
+              className="max-h-[90vh] max-w-[90vw] cursor-default rounded-2xl object-contain shadow-2xl"
+              onClick={(e) => e.stopPropagation()} // Permite interagir com a imagem sem fechar o modal
+            />
+          </motion.div>
+        )}
+      </AnimatePresence>
     </Section>
   );
 }
@@ -1099,6 +1159,19 @@ export function Contato() {
 }
 
 /* ---------------- FOOTER ---------------- */
+function TikTokIcon({ className }: { className?: string }) {
+  return (
+    <svg
+      className={className}
+      viewBox="0 0 24 24"
+      fill="currentColor"
+      stroke="none"
+    >
+      <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64c.29 0 .58.04.86.12V9.4a6.33 6.33 0 0 0-1-.08A6.34 6.34 0 0 0 3 15.66a6.34 6.34 0 0 0 10.86 4.48V13a8.3 8.3 0 0 0 5.73 2.26V11.8a4.84 4.84 0 0 1-3.41-1.32A4.83 4.83 0 0 1 19.59 6.69z" />
+    </svg>
+  );
+}
+
 function Footer() {
   return (
     <footer className="relative overflow-hidden bg-primary text-primary-foreground">
@@ -1163,7 +1236,7 @@ function Footer() {
       </div>
       <div className="border-t border-white/10">
         <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-2 px-6 py-6 text-xs text-white/60 sm:flex-row">
-          <p>© {new Date().getFullYear()} Mievre Ministério do Evangelho do Reino.</p>
+          <p>© {new Date().getFullYear()} MIEVRE - Ministério do Evangelho do Reino.</p>
           <p>Feito com fé em Aracaju - SE.</p>
         </div>
       </div>
