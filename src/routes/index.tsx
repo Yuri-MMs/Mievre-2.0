@@ -598,8 +598,7 @@ function Horarios() {
                 <span aria-hidden className="text-lg"></span> {c.day}
               </div>
               <div className="mt-6 flex items-baseline gap-2">
-                <span className="font-display text-5xl font-semibold text-primary">{c.time.split(":")[0]}</span>
-                <span className="font-display text-2xl text-primary/60">:{c.time.split(":")[1]}</span>
+                <span className="font-display text-5xl font-semibold text-primary">{c.time}</span>
               </div>
               <p className="mt-4 border-t border-border pt-4 text-base font-medium text-foreground">{c.title}</p>
               <Clock className="absolute bottom-5 right-5 h-5 w-5 text-primary/20" />
@@ -1097,12 +1096,28 @@ export function Contato() {
                   <MessageCircle className="h-5 w-5" />
                 </div>
                 <div>
-                  <p className="text-sm font-semibold text-foreground">Redes</p>
-                  <p className="text-sm text-muted-foreground">WhatsApp, Instagram, TikTok e Spotify</p>
+                  <p className="text-sm font-semibold text-foreground">Redes Sociais</p>
+                  <div className="mt-1 flex flex-wrap items-center gap-x-2 gap-y-1 text-sm text-muted-foreground">
+                    {REDES.map((rede, index) => (
+                      <span key={rede.label} className="inline-flex items-center gap-2">
+                        <a
+                          href={rede.href}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="font-medium text-primary underline-offset-4 hover:underline hover:text-gold transition-colors"
+                        >
+                          {rede.label}
+                        </a>
+                        {/* Separador em ponto entre as redes */}
+                        {index < REDES.length - 1 && <span>·</span>}
+                      </span>
+                    ))}
+                  </div>
                 </div>
               </li>
             </ul>
           </div>
+          
 
           {/* Lado Direito: Convite para o Canal do WhatsApp */}
           <motion.div
