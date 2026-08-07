@@ -11,7 +11,7 @@ import { toast, Toaster } from "sonner";
 import { z } from "zod";
 
 import heroImg from "@/assets/culto-fundo.jpeg";
-import aboutImg from "@/assets/about-bible.jpg";
+import fotoCulto from "@/assets/foto-culto.jpeg";
 import logoImg from "@/assets/logo.png";
 import vidasOram from "@/assets/vidas-oram.jpeg";
 import vigilia from "@/assets/vigilia-unidade.jpeg";
@@ -436,8 +436,8 @@ function Historia() {
           <div className="absolute -bottom-6 -right-4 h-32 w-32 rounded-full bg-primary/20 blur-2xl" />
           <div className="relative overflow-hidden rounded-2xl shadow-elegant">
             <img
-              src={aboutImg}
-              alt="Bíblia aberta sobre a mesa com congregação ao fundo"
+              src={fotoCulto}
+              alt="Congregação cultuando a Deus"
               className="h-[520px] w-full object-cover"
               loading="lazy"
             />
