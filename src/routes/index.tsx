@@ -12,9 +12,8 @@ import { z } from "zod";
 
 import heroImg from "@/assets/culto-fundo.jpeg";
 import fotoCulto from "@/assets/foto-culto.jpeg";
+import fotoCulto2 from "@/assets/fotoCulto2.jpeg";
 import logoImg from "@/assets/logo.png";
-import vidasOram from "@/assets/vidas-oram.jpeg";
-import vigilia from "@/assets/vigilia-unidade.jpeg";
 import encontroCasais from "@/assets/encontro-casais.jpeg";
 import pastorMurilo from "@/assets/pastor-murilo.jpeg";
 import pastoraAna from "@/assets/pastora-ana.jpeg"
@@ -33,7 +32,10 @@ export const Route = createFileRoute("/")({
         content: `https://id-preview--11a55fc4-d0a6-474a-9432-1405a6c5cb02.lovable.app${LOGO}`,
       },
     ],
-    links: [{ rel: "canonical", href: "/" }],
+    links: [
+      { rel: "canonical", href: "/" },
+      { rel: "icon", type: "image/png", href: LOGO }, 
+    ],
   }),
   component: HomePage,
 });
@@ -71,7 +73,6 @@ const PASTORES = [
 ];
 
 const EVENTOS = [
-  { img:vigilia },
   { img:encontroCasais }
 ];
 
@@ -425,24 +426,62 @@ function SectionHeader({
 
 /* ---------------- HISTORIA ---------------- */
 function Historia() {
+  
+  const FOTOS_HISTORIA = [fotoCulto, fotoCulto2];
+  
+  
+  const c = useCarousel(FOTOS_HISTORIA.length, true, 4000);
+
   return (
     <Section id="historia" className="bg-background">
       <div className="mx-auto grid max-w-7xl items-center gap-12 px-6 lg:grid-cols-2 lg:gap-20">
+        
+        
         <motion.div
-          variants={fadeUp} initial="hidden" whileInView="show" viewport={{ once: true, margin: "-80px" }}
+          variants={fadeUp} 
+          initial="hidden" 
+          whileInView="show" 
+          viewport={{ once: true, margin: "-80px" }}
           className="relative"
+          onTouchStart={c.onTouchStart}
+          onTouchEnd={c.onTouchEnd}
         >
           <div className="absolute -left-4 -top-4 h-24 w-24 rounded-full bg-gold/20 blur-2xl" />
           <div className="absolute -bottom-6 -right-4 h-32 w-32 rounded-full bg-primary/20 blur-2xl" />
-          <div className="relative overflow-hidden rounded-2xl shadow-elegant">
-            <img
-              src={fotoCulto}
-              alt="Congregação cultuando a Deus"
-              className="h-[520px] w-full object-cover"
-              loading="lazy"
-            />
+          
+        
+          <div className="relative overflow-hidden rounded-2xl shadow-elegant h-[520px]">
+            <AnimatePresence mode="wait">
+              <motion.img
+                key={c.i}
+                src={FOTOS_HISTORIA[c.i]}
+                alt="Congregação cultuando a Deus"
+                initial={{ opacity: 0, scale: 1.05 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.7 }}
+                className="h-full w-full object-cover"
+                loading="lazy"
+              />
+            </AnimatePresence>
+
+            
+            <div className="absolute top-4 left-1/2 -translate-x-1/2 flex gap-1.5 z-10">
+              {FOTOS_HISTORIA.map((_, idx) => (
+                <button
+                  key={idx}
+                  onClick={() => c.setI(idx)}
+                  aria-label={`Ir para foto ${idx + 1}`}
+                  className={`h-1.5 rounded-full transition-all ${
+                    idx === c.i ? "w-6 bg-white" : "w-1.5 bg-white/50"
+                  }`}
+                />
+              ))}
+            </div>
           </div>
-          <div className="absolute -bottom-6 left-6 right-6 rounded-xl border border-gold/30 bg-background/95 p-5 shadow-soft backdrop-blur sm:left-10 sm:right-auto sm:w-72">
+
+          
+          <div className="absolute -bottom-6 left-6 right-6 z-20 rounded-xl border border-gold/30 bg-background/95 p-5 shadow-soft backdrop-blur sm:left-10 sm:right-auto sm:w-72">
             <p className="font-display text-base italic leading-relaxed text-primary">
               “Buscai primeiro o Reino de Deus…”
             </p>
@@ -450,6 +489,7 @@ function Historia() {
           </div>
         </motion.div>
 
+        
         <div>
           <SectionHeader
             center={false}
@@ -482,11 +522,11 @@ function Historia() {
             </div>
           </div>
         </div>
+
       </div>
     </Section>
   );
 }
-
 /* ---------------- CAROUSEL HOOK ---------------- */
 function useCarousel(length: number, autoplay = true, interval = 5000) {
   const [i, setI] = useState(0);
