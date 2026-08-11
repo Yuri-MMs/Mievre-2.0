@@ -67,9 +67,18 @@ const MISSAO = [
 ];
 
 const PASTORES = [
-  { nome: "Pr. Murilo Santos", cargo: "Pastor Fundador", foto: pastorMurilo, desc: "Dedicado ao serviço do Reino, ao ensino da Palavra e ao cuidado da família Mievre."},
-  { nome: "Pra. Ana Paula", cargo: "Pastora", foto: pastoraAna, desc: "Dedicada ao serviço do Reino, ao ensino da Palavra e ao cuidado da família Mievre."},
-  
+  { 
+    nome: "Pr. Murilo Santos", 
+    cargo: "Pastor Fundador", 
+    foto: pastorMurilo, 
+    desc: "Líder e fundador da Mievre, dedica sua trajetória a proclamar o Evangelho do Reino, formar discípulos com firmeza na fé e guiar a igreja com sabedoria e visão pastoral."
+  },
+  { 
+    nome: "Pra. Ana Paula", 
+    cargo: "Pastora", 
+    foto: pastoraAna, 
+    desc: "Serva dedicada ao Reino, servindo com amor no ensino das Escrituras, no cuidado espiritual das famílias e no fortalecimento do corpo de Cristo na Mievre."
+  },
 ];
 
 const EVENTOS = [
