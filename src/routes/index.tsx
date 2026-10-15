@@ -14,7 +14,8 @@ import heroImg from "@/assets/culto-fundo.jpeg";
 import fotoCulto from "@/assets/foto-culto.jpeg";
 import fotoCulto2 from "@/assets/fotoCulto2.jpeg";
 import logoImg from "@/assets/logo.png";
-import encontroCasais from "@/assets/encontro-casais.jpeg";
+import cenamSeminario from "@/assets/cenam.jpeg";
+import vidaSaudavel from "@/assets/vida-saudavel.jpg";
 import pastorMurilo from "@/assets/pastor-murilo.jpeg";
 import pastoraAna from "@/assets/pastora-ana.jpeg"
 
@@ -82,7 +83,8 @@ const PASTORES = [
 ];
 
 const EVENTOS = [
-  { img:encontroCasais }
+  { img: cenamSeminario},
+  { img: vidaSaudavel}
 ];
 
 
@@ -728,7 +730,7 @@ function Eventos() {
                 <img
                   src={EVENTOS[c.i].img}
                   alt={`Evento ${c.i + 1}`}
-                  className="absolute inset-0 h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                  className="h-full w-full object-contain transition-transform duration-300 group-hover:scale-105"
                   loading="lazy"
                 />
 
